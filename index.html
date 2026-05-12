@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Dashboard E-Raport - SD Negeri Keleng 03</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        // Custom palette combining bright blue and deep navy
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9', // Bright Blue
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0f172a', // Deep Navy (Slate 900)
+                            950: '#020617', // Darker Navy
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        /* Custom gradient for Navy to Blue */
+        .bg-gradient-navy {
+            background: linear-gradient(135deg, #0f172a 0%, #0369a1 100%);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="glass-effect sticky top-0 z-50 border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-3">
+                    <div class="bg-orange-500 p-2 rounded-lg shadow-sm">
+                        <i data-lucide="graduation-cap" class="text-white w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-brand-900 leading-tight">SD NEGERI KELENG 03</h1>
+                        <p class="text-xs text-brand-600 font-medium">Portal Akademik & E-Raport</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="p-2 text-slate-400 hover:text-brand-700 transition-colors relative">
+                        <i data-lucide="bell" class="w-5 h-5"></i>
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+                    </button>
+                    <div class="h-9 w-9 rounded-full bg-brand-100 flex items-center justify-center border border-brand-200 cursor-pointer hover:bg-brand-200 transition-colors">
+                        <i data-lucide="user" class="w-4 h-4 text-brand-800"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Welcome Banner (Navy to Blue Gradient) -->
+        <div class="bg-gradient-navy rounded-2xl p-8 mb-8 text-white shadow-xl relative overflow-hidden">
+            <!-- Decorative Elements -->
+            <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-orange-500 opacity-20 blur-2xl"></div>
+            <div class="absolute bottom-0 right-32 -mb-16 w-32 h-32 rounded-full bg-brand-300 opacity-20 blur-xl"></div>
+            
+            <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div>
+                    <span class="inline-block px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-xs font-medium text-brand-100 mb-4">
+                        Sistem Informasi Terpadu
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Dashboard E-Raport</h2>
+                    <h3 class="text-xl text-orange-400 font-medium mb-4">SD Negeri Keleng 03</h3>
+                    <p class="text-slate-300 max-w-2xl text-sm md:text-base leading-relaxed">
+                        Selamat datang di portal akademik. Kelola data penilaian siswa, cetak rapor, dan pantau perkembangan akademik dengan lebih mudah dan efisien.
+                    </p>
+                </div>
+                
+                <div class="hidden md:flex flex-col items-end">
+                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 text-center">
+                        <i data-lucide="calendar-days" class="w-8 h-8 mx-auto mb-2 text-brand-200"></i>
+                        <span id="current-date" class="block text-sm font-medium">Memuat tanggal...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Main Application Card (The requested link) -->
+            <div class="col-span-1 md:col-span-2 lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 hover:shadow-md hover:border-brand-300 transition-all flex flex-col justify-between group">
+                <div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-brand-50 rounded-xl flex items-center justify-center text-brand-700 group-hover:scale-110 group-hover:bg-brand-100 transition-all">
+                            <i data-lucide="monitor-smartphone" class="w-7 h-7"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800">Aplikasi E-Raport Utama</h3>
+                            <span class="text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded-full border border-green-200">Server Online</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 mb-6 text-sm md:text-base leading-relaxed">
+                        Akses sistem E-Raport SD Negeri Keleng 03 untuk melakukan input nilai harian, PTS, PAS, serta mencetak rapor kurikulum yang berlaku.
+                    </p>
+                </div>
+                
+                <a href="https://kathi-reclinable-iliana.ngrok-free.dev/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3.5 px-4 rounded-xl transition-colors duration-300 shadow-md hover:shadow-lg">
+                    <i data-lucide="log-in" class="w-5 h-5"></i>
+                    <span>Login ke E-Raport</span>
+                </a>
+            </div>
+
+            <!-- Stats/Info Card 1 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col justify-between">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-3 bg-brand-50 text-brand-700 rounded-xl">
+                        <i data-lucide="school" class="w-6 h-6"></i>
+                    </div>
+                    <div class="flex flex-col items-end">
+                        <span class="text-xs font-medium text-slate-500 mb-1">Tahun Ajaran</span>
+                        <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-md">2025/2026</span>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-slate-500 text-sm font-medium mb-1">Semester Aktif</p>
+                    <h4 class="text-2xl font-bold text-brand-900">Genap</h4>
+                    <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs text-slate-500">Status Sinkronisasi</span>
+                        <span class="flex items-center gap-1 text-xs font-medium text-green-600">
+                            <i data-lucide="check-circle-2" class="w-3 h-3"></i> Tersinkron
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Link 1 -->
+            <a href="#" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 group hover:border-brand-400 hover:shadow-md transition-all">
+                <div class="w-10 h-10 bg-amber-50 rounded-lg flex items-center justify-center mb-4 text-amber-600 group-hover:-translate-y-1 transition-transform">
+                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-bold text-slate-800 mb-1">Panduan E-Raport</h3>
+                <p class="text-sm text-slate-500">Unduh buku panduan penggunaan aplikasi untuk guru dan wali kelas.</p>
+            </a>
+
+            <!-- Quick Link 2 -->
+            <a href="#" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 group hover:border-brand-400 hover:shadow-md transition-all">
+                <div class="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center mb-4 text-emerald-600 group-hover:-translate-y-1 transition-transform">
+                    <i data-lucide="download-cloud" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-bold text-slate-800 mb-1">Format Nilai</h3>
+                <p class="text-sm text-slate-500">Download template excel format import nilai untuk berbagai mata pelajaran.</p>
+            </a>
+
+            <!-- Quick Link 3 -->
+            <a href="#" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 group hover:border-brand-400 hover:shadow-md transition-all">
+                <div class="w-10 h-10 bg-rose-50 rounded-lg flex items-center justify-center mb-4 text-rose-600 group-hover:-translate-y-1 transition-transform">
+                    <i data-lucide="headset" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-bold text-slate-800 mb-1">Pusat Bantuan</h3>
+                <p class="text-sm text-slate-500">Hubungi operator sekolah jika Anda mengalami kendala login atau input data.</p>
+            </a>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="flex justify-center md:justify-start mb-4 md:mb-0">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="school" class="w-5 h-5 text-orange-500"></i>
+                        <p class="text-sm text-slate-600 font-medium">
+                            &copy; 2026 SD Negeri Keleng 03.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex justify-center md:justify-end gap-6 text-sm text-slate-500">
+                    <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-4 h-4"></i> Keleng, Kesugihan</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Update Date Dynamically
+        const dateElement = document.getElementById('current-date');
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const today = new Date();
+        dateElement.textContent = today.toLocaleDateString('id-ID', options);
+    </script>
+</body>
+</html>
